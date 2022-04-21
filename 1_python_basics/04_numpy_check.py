@@ -17,6 +17,21 @@ print(mat[:,1])
 print("**mat.T -> 転置**")
 print(mat.T)
 
+print('**2x3 cut**')
+print(mat[:, 1:])
+
+output = np.array([[10.1], [10.2], [10.3]])
+mat_all = np.c_[mat, output]
+
+print('**mat_all**')
+print(mat_all)
+
+print('**mat^-1**')
+print(np.linalg.inv(mat))
+
+print('**mat^-1 * mat**')
+print(np.dot(np.linalg.inv(mat), mat))
+
 data1 = np.array([[1.1,2.2],[3.3,4.4]])
 data2 = np.array([[5.5,6.6],[7.7,8.8]])
 
