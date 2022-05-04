@@ -1,26 +1,21 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn import linear_model
-from sklearn.metrics import r2_score
-from sklearn.preprocessing import StandardScaler
 
 with open("boston.csv", 'r') as file:
     line = file.readline()
     data = np.loadtxt(file, delimiter=',')
 
 inputs = data[:,:13]
+print(inputs)
 # inputs = inputs[:,np.newaxis] # convert [*,*,*,..] -> [[*],[*],[*],...]
 
 outputs = data[:,13]
-
-scaler = StandardScaler()
-inputs = scaler.fit_transform(inputs)
 
 regr = linear_model.LinearRegression()
 regr.fit(inputs, outputs)
 
 print('Coefficients: \n', regr.coef_)
-print('R2_score: \n', regr.score(inputs, outputs))
 
 # plot
 # x_min = np.min(inputs)
