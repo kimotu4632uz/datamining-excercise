@@ -9,8 +9,6 @@ with open("boston.csv", 'r') as file:
     data = np.loadtxt(file, delimiter=',')
 
 inputs = data[:,:13]
-# inputs = inputs[:,np.newaxis] # convert [*,*,*,..] -> [[*],[*],[*],...]
-
 outputs = data[:,13]
 
 scaler = StandardScaler()
