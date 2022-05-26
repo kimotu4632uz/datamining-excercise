@@ -1,15 +1,27 @@
-import joblib
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import StandardScaler
 import numpy as np
 import matplotlib.pyplot as plt
 
-with open("iris_training.csv", 'r') as file:
-    line = file.readline()
+with open("iris_validation_scale.csv", 'r') as file:
+    header = file.readline()
     data = np.loadtxt(file, delimiter=',', usecols=(0,1,2,3,4))
 
-inputs = data[:,0:2] 
+inputs = data[:,0:2]
 labels = data[:,4]
 
-clf = joblib.load('svm.pkl')
+type0 = inputs[labels==0]
+type1 = inputs[labels==1]
+
+inputs = np.r_[type0, type1]
+labels = np.r_[np.zeros(len(type0)),np.ones(len(type1))]
+
+# standardization
+# scaler = StandardScaler()
+# inputs = scaler.fit_transform(inputs)
+
+clf = RandomForestClassifier()
+clf.fit(inputs, labels)
 
 mycolors = ['r', 'b']
 for i, mycolor in enumerate(mycolors):

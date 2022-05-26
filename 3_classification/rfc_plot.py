@@ -9,7 +9,7 @@ with open("iris_training.csv", 'r') as file:
 inputs = data[:,0:2] 
 labels = data[:,4]
 
-clf = joblib.load('svm.pkl')
+clf = joblib.load('rfc.pkl')
 
 mycolors = ['r', 'b']
 for i, mycolor in enumerate(mycolors):
@@ -22,6 +22,7 @@ grid_interval = 0.02
 x_grids, y_grids = np.meshgrid(
     np.arange(x_min, x_max, grid_interval),
     np.arange(y_min, y_max, grid_interval))
+
 z_grids = clf.predict(np.c_[x_grids.ravel(), y_grids.ravel()])
 z_grids = z_grids.reshape(x_grids.shape)
 plt.contourf(x_grids, y_grids, z_grids, cmap=plt.cm.bone, alpha=0.2)

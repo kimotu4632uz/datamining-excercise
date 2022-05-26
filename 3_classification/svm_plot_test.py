@@ -2,7 +2,7 @@ import joblib
 import numpy as np
 import matplotlib.pyplot as plt
 
-with open("iris_training.csv", 'r') as file:
+with open("iris_test.csv", 'r') as file:
     line = file.readline()
     data = np.loadtxt(file, delimiter=',', usecols=(0,1,2,3,4))
 

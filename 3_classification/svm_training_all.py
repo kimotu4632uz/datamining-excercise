@@ -6,7 +6,7 @@ with open("iris_training.csv", 'r') as file:
     header = file.readline()
     data = np.loadtxt(file, delimiter=',', usecols=(0,1,2,3,4))
 
-inputs = data[:,0:2]
+inputs = data[:,0:4]
 labels = data[:,4]
 
 type0 = inputs[labels==0]
@@ -17,4 +17,4 @@ training_labels = np.r_[np.zeros(len(type0)),np.ones(len(type1))]
 
 clf = svm.SVC()
 clf.fit(training_inputs, training_labels)
-joblib.dump(clf, 'svm.pkl') 
+joblib.dump(clf, 'svm_all.pkl') 

@@ -1,4 +1,4 @@
-from sklearn import svm
+from sklearn.ensemble import RandomForestClassifier
 import joblib
 import numpy as np
 
@@ -15,6 +15,6 @@ type1 = inputs[labels==1]
 training_inputs = np.r_[type0, type1]
 training_labels = np.r_[np.zeros(len(type0)),np.ones(len(type1))]
 
-clf = svm.SVC()
+clf = RandomForestClassifier()
 clf.fit(training_inputs, training_labels)
-joblib.dump(clf, 'svm.pkl') 
+joblib.dump(clf, 'rfc.pkl') 
