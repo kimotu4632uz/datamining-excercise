@@ -1,5 +1,6 @@
 from sklearn import cluster
 import numpy as np
+import matplotlib.pyplot as plt
 
 with open("iris.csv", 'r') as file:
     header = file.readline()
@@ -14,3 +15,10 @@ results = model.predict(inputs)
 
 print("Original  : {0}".format(labels.astype(np.int64)))
 print("Clustering: {0}".format(results))
+
+mycolors = ['r', 'b', 'g']
+for i, mycolor in enumerate(mycolors):
+    plt.scatter(inputs[results==i, 0], inputs[results==i, 1], color=mycolor) 
+    plt.scatter(model.cluster_centers_[i, 0], model.cluster_centers_[i, 1], marker="x", color=mycolor, s=150)
+
+plt.show();
